@@ -68,7 +68,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     fir++;
                     if(fir == 1) 
-                    {_hit.transform.gameObject.GetComponent<Bells>().bells1();}
+                    {_hit.transform.gameObject.GetComponent<Bells>().bells();}
                     if(fir == 2)
                     {bellsend(); }
                     lenght++;
@@ -78,7 +78,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     sec++;
                     if (sec == 1)
-                    { _hit.transform.gameObject.GetComponent<Bells>().bells2(); }
+                    { _hit.transform.gameObject.GetComponent<Bells>().bells(); }
                     if (sec == 2)
                     { bellsend(); }
                     lenght++;
@@ -87,7 +87,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     thr++;
                     if (thr == 1)
-                    { _hit.transform.gameObject.GetComponent<Bells>().bells3(); }
+                    { _hit.transform.gameObject.GetComponent<Bells>().bells(); }
                     if (thr == 2)
                     { bellsend(); }
                     lenght++;
@@ -97,7 +97,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     four++;
                     if (four == 1)
-                    { _hit.transform.gameObject.GetComponent<Bells>().bells4(); }
+                    { _hit.transform.gameObject.GetComponent<Bells>().bells(); }
                     if (four == 2)
                     { bellsend(); }
                     lenght++;
@@ -107,7 +107,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     fiv++;
                     if (fiv == 1)
-                    { _hit.transform.gameObject.GetComponent<Bells>().bells5(); }
+                    { _hit.transform.gameObject.GetComponent<Bells>().bells(); }
                     if (fiv == 2)
                     { bellsend(); }
                     lenght++;

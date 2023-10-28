@@ -1,28 +1,32 @@
 using UnityEngine;
+using System;
+using System.Collections;
 
 public class Bells : MonoBehaviour
 {
 
+    public Animator bellbong;
+    public GameObject sonud;
 
-    public void bells1()
+
+
+    public void bells()
     {
-        Debug.Log("1");
+        bellbong.enabled = true;
+        StartCoroutine(playsound());
+
     }
-    public void bells2()
+    public IEnumerator playsound()
     {
-        Debug.Log("2");
+        yield return new WaitForSeconds(0.25f);
+        Instantiate(sonud);
+        StartCoroutine(animoff());
     }
-    public void bells3()
+
+    public IEnumerator animoff()
     {
-        Debug.Log("3");
-    }
-    public void bells4()
-    {
-        Debug.Log("4");
-    }
-    public void bells5()
-    {
-        Debug.Log("5");
+        yield return new WaitForSeconds(1.0f);
+        bellbong.enabled = false;
     }
     public void bellend()
     {
@@ -32,5 +36,6 @@ public class Bells : MonoBehaviour
     {
         Debug.Log("acess");
     }
+
 
 }
