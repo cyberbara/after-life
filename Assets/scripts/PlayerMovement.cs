@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speed = 6f;
     [SerializeField] private float _runSpeed = 8f;
     [SerializeField] private float _gravity = -30f;
-    [SerializeField] private float jumpHeight = 2f;
+    [SerializeField] private float jumpHeight = 1.5f;
 
     [SerializeField] private Animator _cameraAnimator;
     private AudioSource audioSource;
@@ -50,8 +50,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (CanStandUp())
         {
-            controller.height = 1.73f;
-            _speed = 6f;
+            controller.height = 1.6f;
+            _speed = 4f;
         }
     }
 
