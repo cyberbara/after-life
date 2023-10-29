@@ -17,6 +17,17 @@ public class LightOther : MonoBehaviour
 
     public bool isLighten = false;
 
+    [SerializeField] private bool lastBlock;
+    public GameObject bridge;
+
+    private bool isActive = false;
+
+    private void Start()
+    {
+        if (lastBlock)
+            bridge.SetActive(false);
+    }
+
     private void Update()
     {
         if (isLighten)
@@ -78,9 +89,15 @@ public class LightOther : MonoBehaviour
             {
                 if (lightOther.nextLight == null)
                 {
-                    Debug.Log("Решено");
+
+                    if (isActive == false && lastBlock)
+                    {
+                        Debug.Log("Решено");
+                        isActive = true;
+                        bridge.SetActive(true);
+                    }
+
                     // Открыть дверь (Головоломка решена)
-                    lightOther.GetComponent<MeshRenderer>().material.color = Color.green;
                 }
 
                 _hitSomething = true;
