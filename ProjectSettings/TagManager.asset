@@ -9,6 +9,9 @@ TagManager:
   - bell3
   - bell4
   - bell5
+  - Grass
+  - Tree
+  - Stone
   layers:
   - Default
   - TransparentFX
@@ -18,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Floor
   - 
   - 
   - 
