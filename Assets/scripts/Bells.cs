@@ -5,8 +5,9 @@ using System.Collections;
 public class Bells : MonoBehaviour
 {
 
-    public Animator bellbong;
-    public GameObject sonud;
+    public Animator bellbong, bridge, bell;
+    public GameObject sonud, bridgesonud;
+    
 
 
 
@@ -14,19 +15,21 @@ public class Bells : MonoBehaviour
     {
         bellbong.enabled = true;
         StartCoroutine(playsound());
-
+        bell.enabled = true;
     }
     public IEnumerator playsound()
     {
         yield return new WaitForSeconds(0.25f);
         Instantiate(sonud);
         StartCoroutine(animoff());
+        
     }
 
     public IEnumerator animoff()
     {
         yield return new WaitForSeconds(1.0f);
         bellbong.enabled = false;
+        bell.enabled = false;
     }
     public void bellend()
     {
@@ -34,7 +37,8 @@ public class Bells : MonoBehaviour
     }
     public void bellsAcess()
     {
-        Debug.Log("acess");
+        bridge.enabled = true;
+        Instantiate(bridgesonud);
     }
 
 

@@ -62,7 +62,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if(_hit.transform != null && _hit.transform.gameObject.GetComponent<Bells>())
         {
-            if (Input.GetKeyUp(KeyCode.E))
+            if (Input.GetMouseButtonDown(0))
             {
                 if(_hit.transform.gameObject.tag == "bell1" && lenght == 0)
                 {
