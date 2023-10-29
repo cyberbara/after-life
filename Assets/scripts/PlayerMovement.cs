@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
+    public bool canMove = false;
     private float _controllerOriginalHeight;
     [SerializeField] private float _speed = 6f;
     [SerializeField] private float _runSpeed = 8f;
@@ -12,18 +13,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 2f;
 
     [SerializeField] private Animator _cameraAnimator;
+    private AudioSource audioSource;
+    public AudioClip walkSound;
 
     Vector3 velocity;
-    bool isGrounded;
+    public bool isGrounded = false;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = walkSound;
         //_cameraAnimator.SetBool("IsWalk", false);
         _controllerOriginalHeight = controller.height;
     }
 
     void Update()
     {
+
         isGrounded = controller.isGrounded;
         Move();
 
@@ -61,6 +67,16 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxisRaw("Vertical");
 
         Vector3 move = (transform.right * x + transform.forward * z).normalized;
+
+        if (move == Vector3.zero || isGrounded == false)
+        {
+            audioSource.Stop();
+            canMove = false;
+        } else if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+            canMove = true;
+        }
 
         /*if (move == Vector3.zero)
         {

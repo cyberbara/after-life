@@ -7,7 +7,8 @@ public class LightBlock : MonoBehaviour
     private Ray _ray;
     private RaycastHit _hit;
     private bool _hitSomething = false;
-    private float _interactDistance = 3f;
+    [SerializeField] private float _interactDistance = 4.3f;
+
     [SerializeField] LightOther nextLight;
 
     private void Update()
@@ -19,7 +20,7 @@ public class LightBlock : MonoBehaviour
 
     private void Ray()
     {
-        _ray = new Ray(transform.position, transform.forward);
+        _ray = new Ray(transform.position, transform.right);
     }
 
     private void DrawRay()
@@ -37,7 +38,7 @@ public class LightBlock : MonoBehaviour
 
     private void OnMouseDown()
     {
-        transform.Rotate(0, 45, 0);
+        transform.Rotate(0, 0, 45);
     }
 
     private void InteractionRay()

@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LightOther : MonoBehaviour
 {
     private Ray _ray;
     private RaycastHit _hit;
     private bool _hitSomething = false;
-    private float _interactDistance = 3f;
+    [SerializeField] private float _interactDistance = 4.3f;
+    [SerializeField] private Transform rayCube;
 
     [SerializeField] public LightOther nextLight = null;
+    [SerializeField] private LightOther prevLight = null;
+
 
     public bool isLighten = false;
 
@@ -17,15 +21,32 @@ public class LightOther : MonoBehaviour
     {
         if (isLighten)
         {
+            if (nextLight != null)
+            {
+                rayCube.gameObject.SetActive(true);
+            }
             Ray();
             DrawRay();
             InteractionRay();
+        } else if (nextLight != null && rayCube != null)
+        {
+            rayCube.gameObject.SetActive(false);
         }
+
+        CheckPrev();
     }
 
     private void Ray()
     {
-        _ray = new Ray(transform.position, transform.forward);
+        _ray = new Ray(transform.position, transform.right);
+    }
+
+    private void CheckPrev()
+    {
+        if(prevLight != null && !prevLight.isLighten)
+        {
+            isLighten = false;
+        }
     }
 
     private void DrawRay()
@@ -43,7 +64,8 @@ public class LightOther : MonoBehaviour
 
     private void OnMouseDown()
     {
-        transform.Rotate(0, 45, 0);
+        if (nextLight != null)
+            transform.Rotate(0, 0, 45);
     }
 
     private void InteractionRay()
@@ -56,20 +78,24 @@ public class LightOther : MonoBehaviour
             {
                 if (lightOther.nextLight == null)
                 {
+                    Debug.Log("Решено");
                     // Открыть дверь (Головоломка решена)
                     lightOther.GetComponent<MeshRenderer>().material.color = Color.green;
                 }
 
                 _hitSomething = true;
-                //interactText.text = interactable.GetDescription();
-
-                nextLight.isLighten = true;
-
+                if (lightOther != prevLight)
+                {
+                    nextLight.isLighten = true;
+                }
             }
-        } else
+        }
+        else
         {
             if (nextLight)
+            {
                 nextLight.isLighten = false;
+            }
         }
         //_interactionPanel.SetActive(_hitSomething);
     }
